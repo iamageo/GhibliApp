@@ -1,13 +1,13 @@
 package com.iamageo.ghibli.data
 
+import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.data.network.GhibliService
-import com.iamageo.ghibli.data.network.response.ResponseGhibli
 
 class GhibliRepository {
 
     private val ghibli = GhibliService()
 
-    suspend fun getAllMovies() : ResponseGhibli {
+    suspend fun getAllMovies() : List<Film> {
         return ghibli.getAllMovies()
     }
 

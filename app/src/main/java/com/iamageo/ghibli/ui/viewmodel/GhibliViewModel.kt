@@ -15,7 +15,7 @@ class GhibliViewModel: ViewModel() {
 
     fun getAllPlanets() {
         viewModelScope.launch {
-            GhibliFilmList.value = ResponseObject.invoke().films
+            GhibliFilmList.value = ResponseObject.invoke()
         }
     }
 

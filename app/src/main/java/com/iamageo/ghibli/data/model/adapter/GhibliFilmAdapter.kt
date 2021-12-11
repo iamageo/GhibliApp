@@ -26,7 +26,7 @@ class GhibliFilmAdapter(private val films: List<Film>, private val context: Cont
     inner class ViewHolder(val itemBinding: FilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun render(film: Film) {
-            itemBinding.filmTitle.text = film.original_title
+            itemBinding.filmTitle.text = film.title
             itemBinding.filmDuration.text = film.running_time.toString()
             Picasso.get().load(film.movie_banner).into(itemBinding.filmBanner)
         }
