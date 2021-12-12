@@ -4,12 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.iamageo.ghibli.base.BaseActivity
 import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.data.model.adapter.GhibliFilmAdapter
 import com.iamageo.ghibli.databinding.ActivityMainBinding
 import com.iamageo.ghibli.ui.viewmodel.GhibliViewModel
 
-class GhibliMain : AppCompatActivity() {
+class GhibliMain : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
