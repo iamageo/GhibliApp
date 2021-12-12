@@ -5,6 +5,8 @@
 </p>
 </br>
 
+<img src="https://user-images.githubusercontent.com/26925002/145727314-bbf64dc2-9fb5-41b4-b9fe-bd41eee83885.gif" align="right" width="32%"/>
+
 ## Tech stack & Open-source libraries
 - Minimum SDK level 30
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
