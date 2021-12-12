@@ -2,9 +2,8 @@ package com.iamageo.ghibli.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
-import com.iamageo.ghibli.R
 import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.data.model.adapter.GhibliFilmAdapter
 import com.iamageo.ghibli.databinding.ActivityMainBinding
@@ -15,6 +14,10 @@ class GhibliMain : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: GhibliViewModel by viewModels()
+
+    private val adapter by lazy {
+        GhibliFilmAdapter(context= this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,9 +38,15 @@ class GhibliMain : AppCompatActivity() {
         })
     }
 
-
     private fun setupRecyclerView(list: List<Film>) {
-        binding.rvFilms.adapter = GhibliFilmAdapter(list, this)
+        adapter.atualiza(list)
+        binding.rvFilms.adapter = adapter
+        adapter.onFilmClick = this::operDialogDetailsFilm
+    }
+
+    private fun operDialogDetailsFilm(film: Film) {
+        Toast.makeText(this, film.title, Toast.LENGTH_SHORT).show()
+        //make dialog this
     }
 
 }

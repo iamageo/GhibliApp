@@ -9,7 +9,10 @@ import com.iamageo.ghibli.databinding.FilmBinding
 import com.iamageo.ghibli.utils.IntToHoursAndMinutes
 import com.squareup.picasso.Picasso
 
-class GhibliFilmAdapter(private val films: List<Film>, private val context: Context): RecyclerView.Adapter<GhibliFilmAdapter.ViewHolder>() {
+class GhibliFilmAdapter(private val films: MutableList<Film> = mutableListOf(),
+                        private val context: Context,
+                        var onFilmClick: (film: Film) -> Unit = {}
+    ): RecyclerView.Adapter<GhibliFilmAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return films.size
@@ -26,11 +29,21 @@ class GhibliFilmAdapter(private val films: List<Film>, private val context: Cont
 
     inner class ViewHolder(val itemBinding: FilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun render(film: Film) {
+        internal fun render(film: Film) {
             itemBinding.filmTitle.text = film.title
             itemBinding.filmDuration.text = IntToHoursAndMinutes(film.running_time)
             Picasso.get().load(film.movie_banner).into(itemBinding.filmBanner)
+
+            itemView.setOnClickListener {
+                onFilmClick(film)
+            }
         }
+
+    }
+
+    fun atualiza(list: List<Film>) {
+        this.films.clear()
+        this.films.addAll(list)
     }
 
 }
