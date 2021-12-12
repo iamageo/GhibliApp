@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.databinding.FilmBinding
+import com.iamageo.ghibli.utils.IntToHoursAndMinutes
 import com.squareup.picasso.Picasso
 
 class GhibliFilmAdapter(private val films: List<Film>, private val context: Context): RecyclerView.Adapter<GhibliFilmAdapter.ViewHolder>() {
@@ -27,7 +28,7 @@ class GhibliFilmAdapter(private val films: List<Film>, private val context: Cont
 
         fun render(film: Film) {
             itemBinding.filmTitle.text = film.title
-            itemBinding.filmDuration.text = film.running_time.toString()
+            itemBinding.filmDuration.text = IntToHoursAndMinutes(film.running_time)
             Picasso.get().load(film.movie_banner).into(itemBinding.filmBanner)
         }
     }
