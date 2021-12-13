@@ -2,8 +2,12 @@ package com.iamageo.ghibli.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+import com.iamageo.ghibli.R
 import com.iamageo.ghibli.base.BaseActivity
 import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.data.model.adapter.GhibliFilmAdapter
@@ -20,13 +24,41 @@ class GhibliMain : BaseActivity() {
         GhibliFilmAdapter(context= this)
     }
 
+    private val builder by lazy {
+        AlertDialog.Builder(this)
+    }
+
+    private val view by lazy {
+        View.inflate(this, R.layout.dialog,null)
+    }
+
+    private val dialog by lazy {
+        builder.create()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        initDialog()
         setupAllMovies()
         setupObservers()
+    }
+
+    private fun initDialog() {
+        builder.setView(view)
+    }
+
+    private fun setupDialog(name: String, desciption: String) {
+
+        val tvName = view.findViewById<TextView>(R.id.filmName)
+        tvName.text = name
+
+        val tvDescription = view.findViewById<TextView>(R.id.filmDescription)
+        tvDescription.text = desciption
+        dialog.show()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
 
     private fun setupAllMovies() {
@@ -46,8 +78,7 @@ class GhibliMain : BaseActivity() {
     }
 
     private fun operDialogDetailsFilm(film: Film) {
-        Toast.makeText(this, film.title, Toast.LENGTH_SHORT).show()
-        //make dialog this
+        setupDialog(film.title, film.description)
     }
 
 }
