@@ -28,7 +28,7 @@
                 android:id="@+id/film_banner"
                 android:contentDescription="@string/content_description_film"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:src="@drawable/ic_launcher_foreground"
                 />
 

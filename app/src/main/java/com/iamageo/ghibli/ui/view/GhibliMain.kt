@@ -1,10 +1,9 @@
 package com.iamageo.ghibli.ui.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.iamageo.ghibli.R
@@ -13,6 +12,8 @@ import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.data.model.adapter.GhibliFilmAdapter
 import com.iamageo.ghibli.databinding.ActivityMainBinding
 import com.iamageo.ghibli.ui.viewmodel.GhibliViewModel
+import com.iamageo.ghibli.utils.IntToHoursAndMinutes
+import com.squareup.picasso.Picasso
 
 class GhibliMain : BaseActivity() {
 
@@ -50,15 +51,38 @@ class GhibliMain : BaseActivity() {
         builder.setView(view)
     }
 
-    private fun setupDialog(name: String, desciption: String) {
+    private fun setupDialog(film: Film) {
 
-        val tvName = view.findViewById<TextView>(R.id.filmName)
-        tvName.text = name
+        setupDialogDetailsFilm(film)
 
-        val tvDescription = view.findViewById<TextView>(R.id.filmDescription)
-        tvDescription.text = desciption
         dialog.show()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
+    private fun setupDialogDetailsFilm(film: Film) {
+        val tvName = view.findViewById<TextView>(R.id.filmName)
+        tvName.text = film.title
+
+        val tvDescription = view.findViewById<TextView>(R.id.filmDescription)
+        tvDescription.text = film.description
+
+        val tvDirector = view.findViewById<TextView>(R.id.filmDirector)
+        tvDirector.text = "Director: " + film.director
+
+        val tvProducer = view.findViewById<TextView>(R.id.filmProducer)
+        tvProducer.text = "Producer: " + film.producer
+
+        val tvYear = view.findViewById<TextView>(R.id.filmYear)
+        tvYear.text = "Year: " + film.release_date.toString()
+
+        val tvScore = view.findViewById<TextView>(R.id.movie_detail_rating)
+        tvScore.text = film.rt_score.toString()
+
+        val tvDuration = view.findViewById<TextView>(R.id.movie_detail_duration)
+        tvDuration.text = IntToHoursAndMinutes(film.running_time)
+
+        val imvFilmBanner = view.findViewById<ImageView>(R.id.filmBanner)
+        Picasso.get().load(film.image).into(imvFilmBanner)
     }
 
     private fun setupAllMovies() {
@@ -67,6 +91,7 @@ class GhibliMain : BaseActivity() {
 
     private fun setupObservers() {
         viewModel.GhibliFilmList.observe(this, {
+            binding.loadingProgressBar.visibility = View.GONE
             setupRecyclerView(it)
         })
     }
@@ -78,7 +103,7 @@ class GhibliMain : BaseActivity() {
     }
 
     private fun operDialogDetailsFilm(film: Film) {
-        setupDialog(film.title, film.description)
+        setupDialog(film)
     }
 
 }

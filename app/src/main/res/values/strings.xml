@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ghibli</string>
     <string name="content_description_film">film banner</string>
+    <string name="label_director">Director</string>
+    <string name="label_producer">Producer</string>
+    <string name="label_year">Year</string>
+    <string name="label_score">Score</string>
+    <string name="label_movie_category">Anime</string>
 </resources>
