@@ -6,4 +6,6 @@
     <string name="label_year">Year</string>
     <string name="label_score">Score</string>
     <string name="label_movie_category">Anime</string>
+    <string name="todo">TODO</string>
+    <string name="description_main">Select your favorite movie and click for see details</string>
 </resources>

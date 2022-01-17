@@ -30,9 +30,9 @@ class GhibliFilmAdapter(private val films: MutableList<Film> = mutableListOf(),
     inner class ViewHolder(val itemBinding: FilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         internal fun render(film: Film) {
-            itemBinding.filmTitle.text = film.title
-            itemBinding.filmDuration.text = IntToHoursAndMinutes(film.running_time)
-            Picasso.get().load(film.movie_banner).into(itemBinding.filmBanner)
+            //itemBinding.filmTitle.text = film.title
+            //itemBinding.filmDuration.text = IntToHoursAndMinutes(film.running_time)
+            Picasso.get().load(film.image).into(itemBinding.filmBanner)
 
             itemView.setOnClickListener {
                 onFilmClick(film)

@@ -6,6 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.iamageo.ghibli.R
 import com.iamageo.ghibli.base.BaseActivity
 import com.iamageo.ghibli.data.model.Film
@@ -15,6 +17,7 @@ import com.iamageo.ghibli.ui.viewmodel.GhibliViewModel
 import com.iamageo.ghibli.utils.IntToHoursAndMinutes
 import com.squareup.picasso.Picasso
 
+
 class GhibliMain : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -22,7 +25,7 @@ class GhibliMain : BaseActivity() {
     private val viewModel: GhibliViewModel by viewModels()
 
     private val adapter by lazy {
-        GhibliFilmAdapter(context= this)
+        GhibliFilmAdapter(context = this)
     }
 
     private val builder by lazy {
@@ -30,7 +33,7 @@ class GhibliMain : BaseActivity() {
     }
 
     private val view by lazy {
-        View.inflate(this, R.layout.dialog,null)
+        View.inflate(this, R.layout.dialog, null)
     }
 
     private val dialog by lazy {
@@ -54,9 +57,17 @@ class GhibliMain : BaseActivity() {
     private fun setupDialog(film: Film) {
 
         setupDialogDetailsFilm(film)
-
         dialog.show()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        setupCloseDialogDetails()
+
+    }
+
+    private fun setupCloseDialogDetails() {
+        val closeDialog = view.findViewById<ImageView>(R.id.close_dialog)
+        closeDialog.setOnClickListener {
+            dialog.hide()
+        }
     }
 
     private fun setupDialogDetailsFilm(film: Film) {
@@ -98,7 +109,10 @@ class GhibliMain : BaseActivity() {
 
     private fun setupRecyclerView(list: List<Film>) {
         adapter.atualiza(list)
+        val layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvFilms.adapter = adapter
+        binding.rvFilms.layoutManager = layoutManager
         adapter.onFilmClick = this::operDialogDetailsFilm
     }
 
