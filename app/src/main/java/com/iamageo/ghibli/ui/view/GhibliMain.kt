@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iamageo.ghibli.R
 import com.iamageo.ghibli.base.BaseActivity
@@ -16,8 +15,9 @@ import com.iamageo.ghibli.databinding.ActivityMainBinding
 import com.iamageo.ghibli.ui.viewmodel.GhibliViewModel
 import com.iamageo.ghibli.utils.IntToHoursAndMinutes
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class GhibliMain : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding

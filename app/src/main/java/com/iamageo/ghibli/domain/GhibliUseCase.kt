@@ -2,11 +2,9 @@ package com.iamageo.ghibli.domain
 
 import com.iamageo.ghibli.data.GhibliRepository
 import com.iamageo.ghibli.data.model.Film
-import com.iamageo.ghibli.data.network.response.ResponseGhibli
+import javax.inject.Inject
 
-class GhibliUseCase {
-
-    private val repository = GhibliRepository()
+class GhibliUseCase @Inject constructor(private val repository: GhibliRepository) {
 
     suspend operator fun invoke(): List<Film> = repository.getAllMovies()
 

@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.databinding.FilmBinding
-import com.iamageo.ghibli.utils.IntToHoursAndMinutes
 import com.squareup.picasso.Picasso
 
-class GhibliFilmAdapter(private val films: MutableList<Film> = mutableListOf(),
-                        private val context: Context,
-                        var onFilmClick: (film: Film) -> Unit = {}
-    ): RecyclerView.Adapter<GhibliFilmAdapter.ViewHolder>() {
+class GhibliFilmAdapter(
+    private val films: MutableList<Film> = mutableListOf(),
+    private val context: Context,
+    var onFilmClick: (film: Film) -> Unit = {}
+) : RecyclerView.Adapter<GhibliFilmAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return films.size
@@ -27,7 +27,8 @@ class GhibliFilmAdapter(private val films: MutableList<Film> = mutableListOf(),
         holder.render(films[position])
     }
 
-    inner class ViewHolder(val itemBinding: FilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    inner class ViewHolder(val itemBinding: FilmBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
 
         internal fun render(film: Film) {
             //itemBinding.filmTitle.text = film.title
