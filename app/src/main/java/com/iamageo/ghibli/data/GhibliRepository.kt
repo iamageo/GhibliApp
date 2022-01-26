@@ -2,13 +2,12 @@ package com.iamageo.ghibli.data
 
 import com.iamageo.ghibli.data.model.Film
 import com.iamageo.ghibli.data.network.GhibliService
+import javax.inject.Inject
 
-class GhibliRepository {
+class GhibliRepository @Inject constructor(private val service: GhibliService) {
 
-    private val ghibli = GhibliService()
-
-    suspend fun getAllMovies() : List<Film> {
-        return ghibli.getAllMovies()
+    suspend fun getAllMovies(): List<Film> {
+        return service.getAllMovies()
     }
 
 }
