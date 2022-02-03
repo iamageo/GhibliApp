@@ -20,7 +20,7 @@
 - [Picasso](https://square.github.io/picasso/) - loading images.
 - [Carousel](https://github.com/sparrow007/CarouselRecyclerview) - carousel effect  
 
-</br></br></br></br></br></br></br></br></br></br>
+</br></br></br></br></br></br>
 
 ## MAD Score
 ![summary](https://user-images.githubusercontent.com/24237865/102366914-84f6b000-3ffc-11eb-8d49-b20694239782.png)
