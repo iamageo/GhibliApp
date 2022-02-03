@@ -14,6 +14,7 @@ import com.iamageo.ghibli.data.model.adapter.GhibliFilmAdapter
 import com.iamageo.ghibli.databinding.ActivityMainBinding
 import com.iamageo.ghibli.ui.viewmodel.GhibliViewModel
 import com.iamageo.ghibli.utils.IntToHoursAndMinutes
+import com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -109,10 +110,9 @@ class GhibliMain : BaseActivity() {
 
     private fun setupRecyclerView(list: List<Film>) {
         adapter.atualiza(list)
-        val layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvFilms.adapter = adapter
-        binding.rvFilms.layoutManager = layoutManager
+        val carouselRecyclerview = findViewById<CarouselRecyclerview>(R.id.recycler)
+        carouselRecyclerview.adapter = adapter
+        carouselRecyclerview.setInfinite(true)
         adapter.onFilmClick = this::operDialogDetailsFilm
     }
 
